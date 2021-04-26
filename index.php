@@ -15,7 +15,7 @@
                 echo json_encode($arr, JSON_UNESCAPED_UNICODE);
             }
          }else {
-        echo $path;
+        echo $path.'erro';
         }
     }
 
