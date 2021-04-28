@@ -7,15 +7,7 @@
         var_dump($path);
         if($path=="login"){
 
-            $sql = "SELECT ID_USUARIO, NOME, APELIDO, DATA_NASC, SENHA, LOGIN, EMAIL FROM usuario";
-            $result = $conn->query($sql);
-            while($row = $result->fetch_assoc()) {
-                echo $row["NOME"]. $row["APELIDO"]. " " . $row["DATA_NASC"]."<br>";
-                $arr = array($row["NOME"] => 1, $row["APELIDO"] => 2, $row["DATA_NASC"] => 3);
-                echo json_encode($arr, JSON_UNESCAPED_UNICODE);
-            }
-         }else {
-        echo $path.'erro';
+            echo login();
         }
     }
 
@@ -31,7 +23,16 @@
 
 
 
-//CRUD
+        function login(){
+            $conn =  mysqli_connect("aurorahorizon.ddns.net:3306", "gabriel", "teste12345678", "aps4sem");
+            $sql = "SELECT ID_USUARIO, NOME, APELIDO, DATA_NASC, SENHA, LOGIN, EMAIL FROM usuario";
+            $result = $conn->query($sql);
+            while($row = $result->fetch_assoc()) {
+                echo $row["NOME"]. $row["APELIDO"]. " " . $row["DATA_NASC"]."<br>";
+                $arr = array($row["NOME"] => 1, $row["APELIDO"] => 2, $row["DATA_NASC"] => 3);
+                echo json_encode($arr, JSON_UNESCAPED_UNICODE);
+            }
+         }
 
 
 ?>
