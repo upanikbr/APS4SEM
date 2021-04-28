@@ -1,5 +1,5 @@
 <?php
-    include 'conn.php';
+    include './conn/conn.php';
     $conn = conn();
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
