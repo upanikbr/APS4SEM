@@ -1,5 +1,6 @@
 <?php
-
+    include 'conn.php';
+    $conn = conn();
 
 
 
@@ -7,28 +8,17 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $path = $_POST['path'];
         if($path=="login"){
-            echo login();
-        }
-    }
-
-
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $path = $_POST['path'];
-        
-        if($path=="register"){
+            echo login($conn);
+        }elseif($path=="register"){
            
-            echo register();
+            echo register($conn);
         }
     }
-
-
-
 
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $path = $_GET['path'];
         if($path=="login"){
-            echo login();
+            echo login($conn);
         }
     }
 
@@ -37,12 +27,8 @@
 
 
 // Função de login para o usuario 
-function login(){
-    $conn =  mysqli_connect("aurorahorizon.ddns.net:3306", "gabriel", "teste12345678", "aps4sem");
-        if (!$conn) {
-            die('Não foi possível conectar: ' );            
-        }      
-
+function login($conn){
+    
     $sql = "SELECT * FROM usuario";
     $result = $conn->query($sql);
 
@@ -57,16 +43,12 @@ function login(){
 
 
 // Função de login para o usuario 
-function register(){
-    $conn =  mysqli_connect("aurorahorizon.ddns.net:3306", "gabriel", "teste12345678", "aps4sem");
-        if (!$conn) {
-            die('Não foi possível conectar: ' );            
-        }      
-        
+function register($conn){
+  
         $name = $_POST['name'];
         $nickName = $_POST['nickName'];
         $email = $_POST['email'];
-    $sql = "INSERT INTO usuario (NOME, APELIDO, EMAIL)
+        $sql = "INSERT INTO usuario (NOME, APELIDO, EMAIL)
         VALUES ('$name', '$nickName', '$email')";
 
     if ($conn->query($sql) === TRUE) {
