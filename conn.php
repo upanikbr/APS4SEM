@@ -13,9 +13,5 @@ function conn(){
         }   
 return $conn;
 }
-
-
-
 //$conn->close();
-
 ?>

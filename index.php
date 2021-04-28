@@ -2,9 +2,6 @@
     include 'conn.php';
     $conn = conn();
 
-
-
-
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $path = $_POST['path'];
         if($path=="login"){
@@ -23,9 +20,6 @@
     }
 
 
-
-
-
 // Função de login para o usuario 
 function login($conn){
     
@@ -40,16 +34,11 @@ function login($conn){
 }
 
 
-
-
 // Função de login para o usuario 
 function register($conn){
-  
-        $name = $_POST['name'];
-        $nickName = $_POST['nickName'];
-        $email = $_POST['email'];
+        $regarray = array($_POST['name'], $_POST['nickName'], $_POST['email']);
         $sql = "INSERT INTO usuario (NOME, APELIDO, EMAIL)
-        VALUES ('$name', '$nickName', '$email')";
+        VALUES ('$regarray[0]', '$regarray[1]', '$regarray[2]')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Cadastrado com Sucesso !!!";
@@ -57,8 +46,5 @@ function register($conn){
         echo "Error: " . $sql . "<br>" . $conn->error;
       }
 }
-
-
-
 
 ?>
