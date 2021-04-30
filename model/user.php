@@ -19,11 +19,41 @@ function register($conn){
     $sql = "INSERT INTO usuario (NOME, APELIDO, EMAIL)
     VALUES ('$regarray[0]', '$regarray[1]', '$regarray[2]')";
 
-if ($conn->query($sql) === TRUE) {
-    echo "Cadastrado com Sucesso !!!";
-  } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-  }
+    if ($conn->query($sql) === TRUE) {
+        echo "Cadastrado com Sucesso !!!";
+    }else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
 }
+
+// Função de Verificação userStatus
+function verif($conn,$id){
+    $result = $conn->query("call testing($id, @userStatus);");
+    extract($result->fetch_all(), EXTR_PREFIX_ALL, 'a');
+    $b = implode($a_0);
+    return $b;
+    $conn->close();
+}
+// Função de exclusão de usuário
+function deleteuser($conn,$id){
+    $b = verif($conn,$id);
+    $del = "UPDATE usuario set ACTIVATED='NO' WHERE ID_USUARIO= '$id'";
+    
+    if($b == '1'){
+        mysqli_query($conn, $del);
+        
+        if($b == '0'){
+            echo "Usuário desativado com sucesso !!!";
+        }else{
+            echo "Não foi possível deletar o usuário!";
+        }
+
+        
+    }else {
+        echo "Usuário já excluído!";
+    }
+}
+
+
 
 ?>

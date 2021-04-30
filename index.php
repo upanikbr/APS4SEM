@@ -8,8 +8,10 @@
         if($path=="login"){
             echo login($conn);
         }elseif($path=="register"){
-           
             echo register($conn);
+        }elseif($path=="deleteUser"){
+            $id = $_POST['id'];
+            deleteuser($conn,$id);
         }
     }
 
