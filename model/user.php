@@ -26,29 +26,30 @@ function register($conn){
     }
 }
 
-// Função de Verificação userStatus
-function verif($conn,$id){
+// Função de Verificação userStatus -> não funciona se usado duas vezes no código
+/*function verif($conn,$id){
     $result = $conn->query("call testing($id, @userStatus);");
     extract($result->fetch_all(), EXTR_PREFIX_ALL, 'a');
     $b = implode($a_0);
+    echo $b;
     return $b;
-    $conn->close();
-}
+}*/
+
 // Função de exclusão de usuário
 function deleteuser($conn,$id){
-    $b = verif($conn,$id);
+    $result = $conn->query("call testing($id, @userStatus);");
+    extract($result->fetch_all(), EXTR_PREFIX_ALL, 'a');
+    $b = implode($a_0);
     $del = "UPDATE usuario set ACTIVATED='NO' WHERE ID_USUARIO= '$id'";
-    
     if($b == '1'){
         mysqli_query($conn, $del);
-        
+        extract($result->fetch_all(), EXTR_PREFIX_ALL, 'a');
+        $b = implode($a_0);
         if($b == '0'){
             echo "Usuário desativado com sucesso !!!";
         }else{
             echo "Não foi possível deletar o usuário!";
-        }
-
-        
+        }  
     }else {
         echo "Usuário já excluído!";
     }
