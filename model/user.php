@@ -37,19 +37,26 @@ function register($conn){
 
 // Função de exclusão de usuário
 function deleteuser($conn,$id){
+    $try = '0';
     $result = $conn->query("call testing($id, @userStatus);");
     extract($result->fetch_all(), EXTR_PREFIX_ALL, 'a');
     $b = implode($a_0);
     $del = "UPDATE usuario set ACTIVATED='0' WHERE ID_USUARIO= '$id'";
-    if($b == '1'){
-        mysqli_query($conn, $del);
-        extract($result->fetch_all(), EXTR_PREFIX_ALL, 'a');
-        $b = implode($a_0);
-        if($b == '0'){
-            echo "Usuário desativado com sucesso !!!";
+    $result->close();
+    $conn->next_result();
+    if(strcmp($b,"1")==0){
+        if ($conn->query($del) === TRUE) {      
+            $result = $conn->query("call testing($id, @userStatus);");
+            extract($result->fetch_all(), EXTR_PREFIX_ALL, 'a');
+            $b = implode($a_0);
+            if($b == '0'){
+                echo "Usuário desativado com sucesso !!!";
+            }else{
+                echo "Não foi possível deletar o usuário!";
+            }  
         }else{
-            echo "Não foi possível deletar o usuário!";
-        }  
+            echo "Erro: " . $conn->error;
+        }
     }else {
         echo "Usuário já excluído!";
     }
