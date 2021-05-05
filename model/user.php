@@ -11,6 +11,8 @@ function login($conn){
                 $arr = array($row["NOME"] => 1, $row["APELIDO"] => 2, $row["DATA_NASC"] => 3);
                 echo json_encode($arr, JSON_UNESCAPED_UNICODE);
     }
+    $conn->close();
+
 }
 
 // Função de registro para o usuario 
@@ -21,45 +23,80 @@ function register($conn){
 
     if ($conn->query($sql) === TRUE) {
         echo "Cadastrado com Sucesso !!!";
-    }else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
+      } else {
+        echo "Error em: " . $sql . "<br>" . $conn->error;
+      }
+
+    $conn->close();
+
 }
 
-// Função de Verificação userStatus -> não funciona se usado duas vezes no código
-/*function verif($conn,$id){
-    $result = $conn->query("call testing($id, @userStatus);");
-    extract($result->fetch_all(), EXTR_PREFIX_ALL, 'a');
-    $b = implode($a_0);
-    echo $b;
-    return $b;
-}*/
 
-// Função de exclusão de usuário
-function deleteuser($conn,$id){
-    $try = '0';
-    $result = $conn->query("call testing($id, @userStatus);");
-    extract($result->fetch_all(), EXTR_PREFIX_ALL, 'a');
-    $b = implode($a_0);
-    $del = "UPDATE usuario set ACTIVATED='0' WHERE ID_USUARIO= '$id'";
-    $result->close();
-    $conn->next_result();
-    if(strcmp($b,"1")==0){
-        if ($conn->query($del) === TRUE) {      
-            $result = $conn->query("call testing($id, @userStatus);");
-            extract($result->fetch_all(), EXTR_PREFIX_ALL, 'a');
-            $b = implode($a_0);
-            if($b == '0'){
-                echo "Usuário desativado com sucesso !!!";
-            }else{
-                echo "Não foi possível deletar o usuário!";
-            }  
-        }else{
-            echo "Erro: " . $conn->error;
+
+function del($conn, $id){
+
+  $result = $conn->query("call testing($id, @userStatus);");
+  extract($result->fetch_all(), EXTR_PREFIX_ALL, 'a');
+  $b = implode($a_0);
+  $sql = "UPDATE usuario set ACTIVATED='0' WHERE ID_USUARIO= '$id'";
+
+  $result->close();
+  $conn->next_result();
+
+  if(strcmp($b,"1") == 0){
+
+    if ($conn->query($sql) == TRUE) {
+
+        //CARREGANDO A QUERY
+        $sql = "SELECT * FROM aps4sem.usuario WHERE ID_USUARIO = $id";
+        $result = $conn->query($sql);
+
+        while($row = $result->fetch_assoc()){
+          //iMPRIME UMA MENSAGEM QUE FOI EXCLUIDO JUNTAMENTE COM O USUARIO EXCLUIDO
+          echo 'Usuario deletado:'.$row['NOME']."";
+
         }
-    }else {
-        echo "Usuário já excluído!";
-    }
+        //FECHANDOA QUERY
+        $result->close();
+
+    }  
+  }else{echo"usuario já deletaodo";}
+
+  //FECHANDOA CARREGAMENTO
+  $conn->close();
+}
+  
+
+
+  
+
+
+
+
+
+
+
+
+function updat($nome,$id){ 
+  
+  
+  try {
+    $username = 'gabriel';
+    $password = 'teste12345678';
+    $pdo = new PDO('mysql:host=aurorahorizon.ddns.net;dbname=aps4sem', $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $stmt = $pdo->prepare('UPDATE usuario SET NOME = :nome  WHERE ID_USUARIO = :id ');
+    $stmt->execute(array(
+      ':id'   => $id,
+      ':nome' =>  $nome
+      )
+  ); 
+    echo $stmt->rowCount();
+  } catch(PDOException $e) {
+    echo 'Error: ' . $e->getMessage();
+  }
+
 }
 
 
