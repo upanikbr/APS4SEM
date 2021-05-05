@@ -40,7 +40,7 @@ function deleteuser($conn,$id){
     $result = $conn->query("call testing($id, @userStatus);");
     extract($result->fetch_all(), EXTR_PREFIX_ALL, 'a');
     $b = implode($a_0);
-    $del = "UPDATE usuario set ACTIVATED='NO' WHERE ID_USUARIO= '$id'";
+    $del = "UPDATE usuario set ACTIVATED='0' WHERE ID_USUARIO= '$id'";
     if($b == '1'){
         mysqli_query($conn, $del);
         extract($result->fetch_all(), EXTR_PREFIX_ALL, 'a');
