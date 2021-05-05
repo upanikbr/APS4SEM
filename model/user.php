@@ -33,7 +33,7 @@ function register($conn){
 
 
 
-function del($conn, $id){
+function deleteuser($conn, $id){
 
   $result = $conn->query("call testing($id, @userStatus);");
   extract($result->fetch_all(), EXTR_PREFIX_ALL, 'a');
@@ -53,14 +53,14 @@ function del($conn, $id){
 
         while($row = $result->fetch_assoc()){
           //iMPRIME UMA MENSAGEM QUE FOI EXCLUIDO JUNTAMENTE COM O USUARIO EXCLUIDO
-          echo 'Usuario deletado:'.$row['NOME']."";
+          echo 'Usuario excluído:'.$row['NOME']."";
 
         }
         //FECHANDOA QUERY
         $result->close();
 
     }  
-  }else{echo"usuario já deletaodo";}
+  }else{echo"Usuário já excluído!";}
 
   //FECHANDOA CARREGAMENTO
   $conn->close();
