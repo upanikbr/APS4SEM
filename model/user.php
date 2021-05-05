@@ -53,7 +53,7 @@ function deleteuser($conn, $id){
 
         while($row = $result->fetch_assoc()){
           //iMPRIME UMA MENSAGEM QUE FOI EXCLUIDO JUNTAMENTE COM O USUARIO EXCLUIDO
-          echo 'Usuario excluído:'.$row['NOME']."";
+          echo 'Usuario excluído: '.$row['NOME']."";
 
         }
         //FECHANDOA QUERY
