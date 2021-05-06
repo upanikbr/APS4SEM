@@ -52,28 +52,19 @@ function deleteuser($conn, $id){
         $result = $conn->query($sql);
 
         while($row = $result->fetch_assoc()){
-          //iMPRIME UMA MENSAGEM QUE FOI EXCLUIDO JUNTAMENTE COM O USUARIO EXCLUIDO
+          //IMPRIME UMA MENSAGEM QUE FOI EXCLUIDO JUNTAMENTE COM O USUARIO EXCLUIDO
           echo 'Usuario excluído: '.$row['NOME']."";
 
         }
-        //FECHANDOA QUERY
+        //FECHANDO A QUERY
         $result->close();
 
     }  
   }else{echo"Usuário já excluído!";}
 
-  //FECHANDOA CARREGAMENTO
+  //FECHANDO CARREGAMENTO
   $conn->close();
 }
-  
-
-
-  
-
-
-
-
-
 
 
 
