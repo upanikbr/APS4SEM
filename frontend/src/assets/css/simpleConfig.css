@@ -1,0 +1,8 @@
+@import url('themeConfig.css');
+.simpleBoxConfig{
+    position: absolute;
+    background-color: var(--simpleBoxRectColor);
+    border:solid;
+    border-radius: 2%;
+    z-index: 3;
+}
