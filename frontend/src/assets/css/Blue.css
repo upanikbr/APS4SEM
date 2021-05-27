@@ -1,0 +1,21 @@
+:root{ /*CSS THEMES PROPRIETS*/
+    --colorfirst: #9d9993;
+    --colorsecond: #ff9900;
+    --colorthird: #52504d;
+    --colorfourth: #343432;
+}
+
+/*:root{ 
+    --colorfirst: #202225;
+    --colorsecond: white;
+    --colorthird: rgb(119, 119, 126);
+    --colorfourth: #36393F;
+}
+
+
+/*:root{ 
+    --colorfirst: rgba(162,248,255,100);
+    --colorsecond: white;
+    --colorthird:  rgba(80,178,255,255);
+    --colorfourth: rgba(0,143,255,255);
+}*/

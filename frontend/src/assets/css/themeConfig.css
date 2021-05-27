@@ -1,0 +1,55 @@
+@import url('./themelink.css');
+
+:root{ /*CSS THEMES PROPRIETS*/
+    --mainColor: var(--colorfirst);
+    --mainScrollColor:var(--colorsecond);
+
+    --headerTextColor: var(--colorsecond);
+    --headerRectColor: var(--colorthird);
+
+    --footerTextColor: var(--colorsecond);
+    --footerRectColor: var(--colorthird);
+
+    --mainMenuColor:var(--colorthird);
+    --mainMenuTitlesRectColor: var(--colorfourth);
+    --mainMenuTitlesTextColor: var(--colorsecond);
+
+    /*BUTTONS*/
+        /*CONFIG 01*/
+        --buttonTextColorCf1: var(--colorsecond);
+        --buttonRectColorCf1: var(--colorthird);
+        --buttonTextColorHoverCf1: var(--colorthird);
+        --buttonRectColorHoverCf1: var(--colorsecond);
+
+    /*CONTACTS MENU*/
+        /*NORMAL VERSION*/
+        --contMenuTextColor: var(--colorsecond);
+        --contMenuCircleColor: var(--colorfourth);
+        --contMenuCircleTextColor: var(--colorsecond);
+
+        /*SELECTED VERSION*/
+        --contMenuTextColorSel: var(--colorfourth);
+        --contMenuRectColorSel: var(--colorsecond);
+
+    /*MEETING MENU*/
+        /*NORMAL VERSION*/
+        --meetMenuTextDataColor: var(--colorsecond);
+        --meetMenuTextThemeColor: var(--colorsecond);
+        --meetMenuLineColor: var(--colorfourth);
+
+        /*SELECTED VERSION*/
+        --meetMenuRectColorSel: var(--colorsecond);
+        --meetMenuTextDataColorSel: var(--colorfourth);
+        --meetMenuTextThemeColorSel: var(--colorfourth);
+
+        /*OCCURRING VERSION*/
+        --meetMenuRectColorOcc: var(--colorfourth);
+        --meetMenuTextDataColorOcc: var(--colorsecond);
+        --meetMenuTextThemeColorOcc: var(--colorsecond);
+    
+    /*SIMPLE BOX CONFIG*/
+    --simpleBoxRectColor: var(--colorthird);
+
+
+    /*CONTAINER*/
+}
