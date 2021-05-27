@@ -17,7 +17,8 @@ export default {
   name: 'App',
   data(){
     return{
-      selectTheme:'blue'
+      selectTheme:'blue',
+      connection: null
     }
   },
   methods:{
@@ -30,7 +31,22 @@ export default {
   mounted(){
     var cfTheme = document.getElementById('indexThemes')
     cfTheme.setAttribute("href",`themes/${this.selectTheme}.css`)
+  },
+  created(){
+    console.log("Starting Connection ")
+    this.connection = new WebSocket("wss://echo.websocke.org")
+
+    this.connection.onopen = (event) =>{
+      console.log(event)
+      console.log("successfully connected to the echo web socket server")
+    }
+
+    this.connection.onmessage = (event) =>{
+      console.log(event)
+    }
+
   }
+
 }
 </script>
 
