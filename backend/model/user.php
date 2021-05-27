@@ -92,4 +92,13 @@ function updat($nome,$id){
 
 
 
+
+
+
+
+
+
+
+
+
 ?>
